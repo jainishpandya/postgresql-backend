@@ -24,6 +24,12 @@ module.exports = sequelize.define('user',{
   phone_no: {
     type: DataTypes.STRING
   },
+  setPasswordToken: {
+    type: DataTypes.STRING
+  },
+  setPasswordTokenExpiry: {
+    type: DataTypes.DATE
+  },
   verificationToken: {
     type: DataTypes.STRING
   },

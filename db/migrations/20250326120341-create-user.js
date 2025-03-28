@@ -10,7 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userType: {
-        type: Sequelize.ENUM('0','1','2')
+        type: Sequelize.ENUM('0', '1', '2')
       },
       name: {
         type: Sequelize.STRING
@@ -23,6 +23,12 @@ module.exports = {
       },
       phone_no: {
         type: Sequelize.STRING
+      },
+      setPasswordToken: {
+        type: Sequelize.STRING
+      },
+      setPasswordTokenExpiry: {
+        type: Sequelize.DATE
       },
       verificationToken: {
         type: Sequelize.STRING

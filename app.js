@@ -1,10 +1,12 @@
 const express = require('express');
 require('dotenv').config({path: `${process.cwd()}/.env`})
+const cors = require('cors')
 const authRouter = require("./route/authRoute");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 
 app.get('/' , (req, res) => {
