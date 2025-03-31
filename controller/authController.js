@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const { param } = require("../route/authRoute");
 const { transporter, mailOptions } = require('../config/nodemailer');
 const { verificationCode, setupaccount } = require('../templates/emailtemplates');
+const { generateToken } = require('../jwt');
 
 const signup = async (req, res, next) => {
     const body = req.body;
@@ -215,7 +216,14 @@ const mfa = async (req, res) => {
             const response = await result.save();
             
             if (response) {
-                res.status(200).json({ success: true, message: "Login Successful " });
+
+                const payload = {
+                    id: result.id,
+                    email: result.email
+                }
+                const token = await generateToken(payload)
+
+                res.status(200).json({ success: true, message: "Login Successful ", token: token, user: result });
             } else {
                 res.status(400).json({ success: true, message: "Internal Server Error" });
             }
